@@ -64,5 +64,10 @@ return {
     end)
     map("", "<c-e><c-e>", "<Plug>SendLine")
     map("", "<c-e>", "<Plug>Send")
+    -- better indentation
+    map("n", "<", "<<")
+    map("n", ">", ">>")
+    map("x", "<", "<gv")
+    map("x", ">", ">gv")
   end,
 }

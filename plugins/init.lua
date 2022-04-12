@@ -149,7 +149,7 @@ return function(plugins)
         vim.g.simple_todo_map_keys = false
       end,
     },
-    { "wakatime/vim-wakatime", event = "BufRead" },
+    -- { "wakatime/vim-wakatime", event = "BufRead" },
   }
 
   -- Disabled Default Plugins

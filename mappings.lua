@@ -3,8 +3,8 @@ return {
     local unmap = vim.keymap.del
     local map = vim.keymap.set
 
-    unmap("n", "<A-j>")
-    unmap("n", "<A-k>")
+    -- unmap("n", "<A-j>")
+    -- unmap("n", "<A-k>")
     unmap("n", "<C-Down>")
     unmap("n", "<C-Left>")
     unmap("n", "<C-Right>")

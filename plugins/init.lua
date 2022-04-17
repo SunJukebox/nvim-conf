@@ -149,6 +149,12 @@ return function(plugins)
         vim.g.simple_todo_map_keys = false
       end,
     },
+    {
+      "iurimateus/luasnip-latex-snippets.nvim",
+      after = "LuaSnip",
+      requires = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
+      ft = "tex",
+    },
     -- { "wakatime/vim-wakatime", event = "BufRead" },
   }
 
@@ -162,6 +168,11 @@ return function(plugins)
   -- Disabled Default Lazy Loading
   plugins["nvim-neo-tree/neo-tree.nvim"].cmd = nil
   plugins["nvim-neo-tree/neo-tree.nvim"].module = nil
+
+  -- Change LuaSnip Config
+  plugins["L3MON4D3/LuaSnip"].config = function()
+    require "user.plugins.luasnip"
+  end
 
   return vim.tbl_deep_extend("force", plugins, my_plugins)
 end

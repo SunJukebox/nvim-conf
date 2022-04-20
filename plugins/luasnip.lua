@@ -38,19 +38,4 @@ return function()
   --]]
 
   require("luasnip.loaders.from_lua").lazy_load()
-
-  -- Load VSCode-style snippets
-  local status_ok, loader = pcall(require, "luasnip/loaders/from_vscode")
-  if not status_ok then
-    return
-  end
-
-  local user_settings = require("core.utils").user_plugin_opts("luasnip", {})
-  if user_settings.vscode_snippet_paths ~= nil then
-    loader.load { paths = user_settings.vscode_snippet_paths, exclude = { "latex", "lua", "markdown" } }
-  else
-    loader.load { exclude = { "latex", "lua", "markdown" } }
-  end
-
-  -- vim.api.nvim_add_user_command('LuaSnipEdit', edit_ft, {})
 end

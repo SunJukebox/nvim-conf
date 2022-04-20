@@ -149,12 +149,6 @@ return function(plugins)
         vim.g.simple_todo_map_keys = false
       end,
     },
-    {
-      "iurimateus/luasnip-latex-snippets.nvim",
-      after = "LuaSnip",
-      requires = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
-      ft = "tex",
-    },
     -- { "wakatime/vim-wakatime", event = "BufRead" },
   }
 

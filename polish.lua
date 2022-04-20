@@ -1,5 +1,6 @@
 return function()
   local set = vim.opt
+  local g = vim.g
 
   -- Options
   -- show whitespace characters
@@ -12,6 +13,8 @@ return function()
     nbsp = "␣",
   }
   set.showbreak = "↪ "
+  -- enable conceal
+  set.conceallevel = 2
   -- soft wrap lines
   set.wrap = true
   -- linebreak soft wrap at words
@@ -24,36 +27,15 @@ return function()
   set.foldmethod = "expr"
   set.foldexpr = "nvim_treesitter#foldexpr()"
 
-  vim.g.load_black = false
-  vim.g.loaded_matchit = true
-
-  -- Functions
-  function _G.toggle_hard_wrap(width)
-    if width == nil then
-      width = 80
-    end
-    if set.textwidth._value == 0 then
-      set.textwidth = width
-      print "Hard Wrap Enabled"
-    else
-      set.textwidth = 0
-      print "Hard Wrap Disabled"
-    end
-  end
-
-  function _G.toggle_soft_wrap()
-    if vim.wo.wrap then
-      vim.wo.wrap = false
-      print "Soft Wrap Disabled"
-    else
-      vim.wo.wrap = true
-      print "Soft Wrap Enabled"
-    end
-  end
+  g.load_black = false
+  g.loaded_matchit = true
 
   -- Auto Commands
   require("user.autocmds").setup()
 
   -- Mappings
   require("user.mappings").setup()
+
+  -- Filetypes
+  require("user.filetype").setup()
 end

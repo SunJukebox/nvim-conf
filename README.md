@@ -10,7 +10,7 @@ Most of the code has been ~~stolen from~~ inspired by [mehalter's personal confi
 
 Linux:
 ```sh
-git clone https://github.com/kabinspace/AstroVim ~/.config/nvim
+git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 ```
 
 Windows:

@@ -3,6 +3,20 @@ if not status_ok then
   return
 end
 
+local function vim_opt_toggle(opt, on, off, name)
+  return function()
+    local message = name
+    if vim.opt[opt]._value == off then
+      vim.opt[opt] = on
+      message = message .. " Enabled"
+    else
+      vim.opt[opt] = off
+      message = message .. " Disabled"
+    end
+    vim.notify(message, "info", require("core.utils").base_notification)
+  end
+end
+
 local function opts(mode, prefix)
   return {
     mode = mode,
@@ -16,7 +30,7 @@ end
 
 -- Normal Mode <leader> Mappings
 local Nmappings = {
-  ["c"] = { "Bye Buffer" },
+  ["c"] = { "<cmd>Bdelete!<CR>", "Bye Buffer" },
   ["C"] = { "<cmd>bdelete!<cr>", "Close Buffer" },
   ["N"] = { "<cmd>tabnew<cr>", "New Buffer" },
   ["H"] = { "<cmd>set hlsearch!<cr>", "Toggle Highlight" },
@@ -101,8 +115,9 @@ local Nmappings = {
     t = { "<cmd>TableModeToggle<cr>", "Toggle Table Mode" },
     p = { "<cmd>setlocal paste!<cr>", "Toggle Paste" },
     b = { "<cmd>read !getbib -c<cr>", "Get Bib" },
-    w = { _G.toggle_soft_wrap, "Toggle Soft Wrapping" },
-    W = { _G.toggle_hard_wrap, "Toggle Hard Wrapping" },
+    c = { vim_opt_toggle("conceallevel", 2, 0, "Conceal"), "Toggle Conceal" },
+    w = { vim_opt_toggle("wrap", true, false, "Soft Wrap"), "Toggle Soft Wrapping" },
+    W = { vim_opt_toggle("textwidth", 80, 0, "Hard Wrap"), "Toggle Hard Wrapping" },
     m = { "<cmd>Glow<cr>", "Preview Markdown" },
     M = {
       function()
@@ -132,6 +147,18 @@ local Nmappings = {
     c = { nil },
     p = { "Next Parameter" },
     P = { "Previous Parameter" },
+    s = {
+      function()
+        require("syntax-tree-surfer").select()
+      end,
+      "Surf",
+    },
+    S = {
+      function()
+        require("syntax-tree-surfer").select_current_node()
+      end,
+      "Surf Node",
+    },
   },
 
   n = {

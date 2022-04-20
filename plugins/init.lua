@@ -52,12 +52,36 @@ return function(plugins)
         require("zen-mode").setup(require "user.plugins.zen-mode")
       end,
     },
-    { "hrsh7th/cmp-calc", after = "nvim-cmp" },
-    { "hrsh7th/cmp-emoji", after = "nvim-cmp" },
+    {
+      "hrsh7th/cmp-calc",
+      after = "nvim-cmp",
+      config = function()
+        require("core.utils").add_user_cmp_source "calc"
+      end,
+    },
+    {
+      "hrsh7th/cmp-emoji",
+      after = "nvim-cmp",
+      config = function()
+        require("core.utils").add_user_cmp_source "emoji"
+      end,
+    },
     { "jbyuki/nabla.nvim", module = "nabla" },
     -- { "jc-doyle/cmp-pandoc-references", after = "nvim-cmp" }, -- reenable once rmd is added
-    { "mehalter/cmp-pandoc-references", after = "nvim-cmp" },
-    { "kdheepak/cmp-latex-symbols", after = "nvim-cmp" },
+    {
+      "mehalter/cmp-pandoc-references",
+      after = "nvim-cmp",
+      config = function()
+        require("core.utils").add_user_cmp_source "pandoc_references"
+      end,
+    },
+    {
+      "kdheepak/cmp-latex-symbols",
+      after = "nvim-cmp",
+      config = function()
+        require("core.utils").add_user_cmp_source "latex_symbols"
+      end,
+    },
     {
       "mfussenegger/nvim-dap",
       module = "dap",
@@ -150,6 +174,7 @@ return function(plugins)
       end,
     },
     -- { "wakatime/vim-wakatime", event = "BufRead" },
+    { "ziontee113/syntax-tree-surfer", module = "syntax-tree-surfer" },
   }
 
   -- Disabled Default Plugins

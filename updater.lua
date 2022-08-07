@@ -1,4 +1,3 @@
 return {
-  channel = "nightly",
-  branch = "v2",
+  skip_prompts = true,
 }

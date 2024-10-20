@@ -3,8 +3,8 @@ return {
   lazy = true,
   build = "make install_jsregexp",
   dependencies = {
-    dir = "~/Projects/nvim-plugins/mySnippets",
-    opts = { path = "~/Projects/nvim-plugins/mySnippets/snippets" },
+    dir = vim.env.HOME .. "/Projects/nvim-plugins/mySnippets",
+    opts = { path = vim.env.HOME .. "/Projects/nvim-plugins/mySnippets/snippets" },
   },
   config = function()
     local ls = require("luasnip")

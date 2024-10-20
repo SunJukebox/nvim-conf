@@ -6,7 +6,7 @@ return {
 
     require("luasnip.loaders.from_lua").lazy_load({
       paths = {
-        vim.fn.stdpath("config") .. "/snippets/snips",
+        vim.env.HOME .. "/Projects/nvim-plugins/mySnippets/snippets",
       },
     })
 

@@ -144,7 +144,20 @@ return {
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {
+          settings = {
+            pyright = {
+              -- Use Ruff's import organizer
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                -- Use Ruff for linting
+                ignore = { '*' ,}
+              },
+            },
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -183,15 +196,17 @@ return {
         },
 
         texlab = {
-          capabilities = {},
-          on_attach = function(_, bufnr)
-            local map = function(keys, func, desc)
-              vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
-            end
-
-            map("<leader>lb", "<cmd>TexlabBuild<CR>", "Texlab [B]uild")
-          end,
+          -- capabilities = {},
+          -- on_attach = function(_, bufnr)
+          --   local map = function(keys, func, desc)
+          --     vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
+          --   end
+          --
+          --   map("<leader>lb", "<cmd>TexlabBuild<CR>", "Texlab [B]uild")
+          -- end,
         },
+
+        ruff = {},
       }
 
       -- Ensure the servers and tools above are installed

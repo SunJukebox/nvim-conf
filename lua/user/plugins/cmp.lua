@@ -93,6 +93,11 @@ return {
             luasnip.jump(-1)
           end
         end, { 'i', 's' }),
+        ['<C-@>'] = cmp.mapping(function()
+         if luasnip.choice_active() then
+            luasnip.change_choice(1)
+         end
+        end, { 'i', 's'})
       },
       sources = {
         { name = 'nvim_lsp' },

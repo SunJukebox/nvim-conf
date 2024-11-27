@@ -13,6 +13,7 @@ vim.opt.wrap = false
 -- Search settings
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.inccommand = "split"
 -- opt.smartindent = true -- autoindent new lines
 
 -- Split windows
@@ -63,3 +64,9 @@ end
 
 -- Latex
 vim.g.tex_flavor = "latex"
+
+-- Better netrw
+vim.g.netrw_banner = 0
+vim.g.netrw_browse_split = 4
+vim.g.netrw_liststyle = 3
+vim.g.netrw_winsize = -28

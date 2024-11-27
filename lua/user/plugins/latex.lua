@@ -1,25 +1,21 @@
 return {
   {
     "mathjiajia/latex.nvim",
+    dependencies = {
+      "kylechui/nvim-surround"
+    },
     ft = "tex",
-    commit = "2d90afe",
-    config = function()
-      require("latex").setup({
+    init = function()
+      vim.g.latex_conf = {
         imaps = {
-          add = {
-            ["\\mathrm"] = {
-              lhs = "R",
-              leader = "#",
-              wrap_char = true,
-            },
-          },
+          enabled = true,
         },
-        surrounds = {
-          enabled = false,
-          command = "c",
-          environment = "e",
+        texlab = {
+          enabled = true,
+          build = "<leader>lb",
+          forward = "<leader>ls"
         },
-      })
+      }
     end,
   },
 }

@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "user.plugins" }, { import = "user.plugins.lsp" } }, {
+require("lazy").setup({ { import = "user.plugins" } }, {
 	-- install = {
 	-- 	colorscheme = { "habamax" },
 	-- },
@@ -49,7 +49,7 @@ require("lazy").setup({ { import = "user.plugins" }, { import = "user.plugins.ls
 				"gzip",
 				"matchit",
 				"matchparen",
-				"netrwPlugin",
+				-- "netrwPlugin",
 				"rplugin",
 				"shada",
 				"spellfile",

@@ -1,39 +1,23 @@
 return {
   "L3MON4D3/LuaSnip",
-  config = function(_, opts)
+  lazy = true,
+  build = "make install_jsregexp",
+  dependencies = {
+    dir = "~/Projects/nvim-plugins/mySnippets",
+    opts = { path = "~/Projects/nvim-plugins/mySnippets/snippets" },
+  },
+  config = function()
     local ls = require("luasnip")
-    ls.setup(opts)
-
-    require("luasnip.loaders.from_lua").lazy_load({
-      paths = {
-        vim.fn.stdpath("config") .. "/snippets/snips",
-      },
-    })
-
-    vim.keymap.set({ "i", "s" }, "<C-@>", function()
-      if ls.choice_active() then
-        ls.change_choice(1)
-      end
-    end, { desc = "LuaSnip Next Choice" })
-  end,
-  opts = function()
     local types = require("luasnip.util.types")
-    return {
+
+    ls.setup({
       update_events = "TextChanged,TextChangedI",
       enable_autosnippets = true,
       ext_opts = {
-        [types.choiceNode] = {
-          active = {
-            virt_text = { { "", "Special" } },
-          },
-        },
-        [types.insertNode] = {
-          active = {
-            virt_text = { { "", "Boolean" } },
-          },
-        },
+        [types.choiceNode] = { active = { virt_text = { { "○", "Special" } } } },
+        [types.insertNode] = { active = { virt_text = { { "", "Boolean" } } } },
       },
-    }
+    })
   end,
   keys = function()
     return {}

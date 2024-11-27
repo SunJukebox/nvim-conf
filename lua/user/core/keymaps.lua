@@ -1,13 +1,13 @@
-local function keymap(mode, lhs, rhs, opts)
-	opts = opts or {}
-	opts.silent = opts.silent ~= false
-  opts.noremap = opts.noremap ~= false
-	vim.keymap.set(mode, lhs, rhs, opts)
-end
+-- local function keymap(mode, lhs, rhs, opts)
+-- 	opts = opts or {}
+-- 	opts.silent = opts.silent ~= false
+--   opts.noremap = opts.noremap ~= false
+-- 	vim.keymap.set(mode, lhs, rhs, opts)
+-- end
 -- local opts = { noremap = true, silent = true }
 
 -- Space as leader key
-keymap("", "<Space>", "<Nop>")
+vim.keymap.set("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " " -- meant for a specific buffer, you generally use it based on a filetype
 
@@ -18,30 +18,30 @@ vim.g.maplocalleader = " " -- meant for a specific buffer, you generally use it 
 -- end, { desc = "Update" })
 
 -- Keeping it centered
-keymap("n", "<C-d>", "<C-d>zz")
-keymap("n", "<C-u>", "<C-u>zz")
-keymap("n", "n", "nzzzv")
-keymap("n", "N", "NNzzv")
-keymap("n", "}", "}zzzv")
-keymap("n", "{", "{zzzv")
-keymap("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "NNzzv")
+vim.keymap.set("n", "}", "}zzzv")
+vim.keymap.set("n", "{", "{zzzv")
+vim.keymap.set("n", "J", "mzJ`z")
 
 -- Move to window using the <ctrl> hjkl keys
-keymap("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
-keymap("n", "<C-j>", "<C-w>j", { desc = "Move to window below" })
-keymap("n", "<C-k>", "<C-w>k", { desc = "Move to window above" })
-keymap("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to window below" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to window above" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 -- Resize window using <ctrl> arrow keys
-keymap("n", "<C-Up>", "<cmd>resize -2<CR>")
-keymap("n", "<C-Down>", "<cmd>resize +2<CR>")
-keymap("n", "<C-Left>", "<cmd>vertical resize -2<CR>")
-keymap("n", "<C-Right>", "<cmd>vertical resize +2<CR>")
+vim.keymap.set("n", "<C-Up>", "<cmd>resize -2<CR>")
+vim.keymap.set("n", "<C-Down>", "<cmd>resize +2<CR>")
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<CR>")
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<CR>")
 
 -- Navigate buffers
-keymap("n", "[b", "<cmd>bprevious<CR>", { desc = "Prev. [B]uffer" })
-keymap("n", "]b", "<cmd>bnext<CR>", { desc = "Next [B]uffer" })
-keymap("n", "<leader>bd", "<cmd>bdelete<CR>", {desc = "Delete Buffer"})
+vim.keymap.set("n", "[b", "<cmd>bprevious<CR>", { desc = "Prev. [B]uffer" })
+vim.keymap.set("n", "]b", "<cmd>bnext<CR>", { desc = "Next [B]uffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", {desc = "Delete Buffer"})
 -- keymap("n", "<S-Left>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer behind" })
 -- keymap("n", "<S-Right>", "<cmd>BufferLineMoveNext<CR>", { desc = "Move buffer ahead" })
 
@@ -97,3 +97,5 @@ vim.keymap.set("i", "<M-D-j>", "<Esc><cmd>m .+1<CR>==gi")
 vim.keymap.set("i", "<M-D-k>", "<Esc><cmd>m .-2<CR>==gi")
 vim.keymap.set("v", "<M-D-j>", "<cmd>m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<M-D-k>", "<cmd>m '<-2<CR>gv=gv")
+
+vim.keymap.set("n", "<leader>e", "<cmd>Lexplore<CR>")

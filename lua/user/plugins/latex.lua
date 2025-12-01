@@ -1,6 +1,7 @@
 return {
   {
     "mathjiajia/latex.nvim",
+    commit = "bfc0ef8",
     dependencies = {
       "kylechui/nvim-surround"
     },
@@ -9,11 +10,6 @@ return {
       vim.g.latex_conf = {
         imaps = {
           enabled = true,
-        },
-        texlab = {
-          enabled = true,
-          build = "<leader>lb",
-          forward = "<leader>ls"
         },
       }
     end,

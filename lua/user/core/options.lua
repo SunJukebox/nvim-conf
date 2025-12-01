@@ -41,10 +41,10 @@ vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would sh
 vim.opt.guifont = "JetBrainsMono NF Thin:h15"
 vim.opt.fileencoding = "utf-8"
 vim.opt.writebackup = false -- disable making a backup before overwriting a file
-vim.opt.backup = false -- creates a backup file
+vim.opt.backup = false      -- creates a backup file
 -- opt.hidden = true -- required to keep multiple buffers and open multiple buffers
-vim.opt.undofile = true -- enable persistent undo
-vim.opt.updatetime = 180 -- interval for writing swap file to disk, also used by gitsigns
+vim.opt.undofile = true     -- enable persistent undo
+vim.opt.updatetime = 180    -- interval for writing swap file to disk, also used by gitsigns
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- Folding using treesitter
@@ -54,12 +54,12 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 --- Settings
 vim.opt.spelllang:append("cjk") -- Disable spellchecking for asian characters (VIM algorithm does not support it)
-vim.opt.shortmess:append("c") -- Don't show redundant messages from ins-completion-menu
+vim.opt.shortmess:append("c")   -- Don't show redundant messages from ins-completion-menu
 vim.opt.whichwrap:append("<,>,[,],h,l")
 
 -- Disable some default providers
 for _, provider in ipairs({ "node", "perl", "python3", "ruby" }) do
-	vim.g["loaded_" .. provider .. "_provider"] = 0
+  vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
 -- Latex
@@ -67,6 +67,7 @@ vim.g.tex_flavor = "latex"
 
 -- Better netrw
 vim.g.netrw_banner = 0
-vim.g.netrw_browse_split = 4
 vim.g.netrw_liststyle = 3
+vim.g.netrw_browse_split = 4
+vim.g.netrw_altv = 1
 vim.g.netrw_winsize = -28

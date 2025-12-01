@@ -1,23 +1,37 @@
 return {
-  -- Formatter
+  -- formatter
   "stevearc/conform.nvim",
-  dependencies = { "mason.nvim" },
-  cmd = "ConformInfo",
-  opts = {
-    notify_on_error = false,
-    -- format_on_save = {
-    -- 	timeout_ms = 500,
-    -- 	lsp_fallback = true,
-    -- },
-    formatters_by_ft = {
-      lua = { "stylua" },
-      tex = { "latexindent" },
-      -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
-      --
-      -- You can use a sub-list to tell conform to run *until* a formatter
-      -- is found.
-      -- javascript = { { "prettierd", "prettier" } },
-    },
-  },
+  init = function()
+    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+  end,
+  config = function()
+    require("conform").setup({
+      formatters = {
+        ["bibtex-tidy"] = {
+          prepend_args = {
+            "--curly",
+            "--tab",
+            "--trailing-commas",
+            "--sort-fields=author,year,month,day,title,shorttitle",
+            "--remove-braces",
+          },
+        },
+      },
+      formatters_by_ft = {
+        bib = { "bibtex-tidy" },
+        markdown = { "prettierd" },
+        ["markdown.mdx"] = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        tex = { "tex-fmt" },
+      },
+      format_on_save = {
+        lsp_format = "fallback",
+        timeout_ms = 500,
+      },
+    })
+
+    vim.keymap.set({ "n", "v" }, "<leader>lf", function()
+      require("conform").format({ formatters = { "injected" } })
+    end, { desc = "[F]ormat" })
+  end,
 }

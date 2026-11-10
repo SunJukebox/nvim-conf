@@ -1,73 +1,75 @@
--- Line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
+-- NOTE: These 2 should be set up before any plugins with keybinds are loaded.
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
--- Tabs & Indentation
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true -- convert tabs to spaces
+vim.g.tex_flavor = 'latex'
 
--- Line wrapping
-vim.opt.wrap = false
+-- See `:help vim.o`
+-- NOTE: You can change these options as you wish!
 
--- Search settings
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.inccommand = "split"
--- opt.smartindent = true -- autoindent new lines
+-- allow .nvim.lua in current dir and parents (project config)
+vim.o.exrc = false -- can be toggled off in that file to stop it from searching further
 
--- Split windows
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+-- Sets how neovim will display certain whitespace characters in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- Info
-vim.opt.showmode = false
-vim.opt.showcmd = false
+-- Set highlight on search
+vim.opt.hlsearch = true
 
--- Clipboard
-vim.opt.clipboard = "unnamedplus"
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = 'split'
 
--- Turn off swapfile
-vim.opt.swapfile = false
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.scrolloff = 10
 
-vim.opt.confirm = true
-vim.opt.cursorline = true
-vim.opt.scrolloff = 6
-vim.opt.sidescrolloff = 8
-vim.opt.termguicolors = true
-vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
+-- Make line numbers default
+vim.wo.number = true
 
--- Misc
-vim.opt.guifont = "JetBrainsMono NF Thin:h15"
-vim.opt.fileencoding = "utf-8"
-vim.opt.writebackup = false -- disable making a backup before overwriting a file
-vim.opt.backup = false      -- creates a backup file
--- opt.hidden = true -- required to keep multiple buffers and open multiple buffers
-vim.opt.undofile = true     -- enable persistent undo
-vim.opt.updatetime = 180    -- interval for writing swap file to disk, also used by gitsigns
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+-- Enable mouse mode
+vim.o.mouse = 'a'
 
--- Folding using treesitter
-vim.opt.foldlevel = 20
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- Indent
+-- vim.o.smarttab = true
+vim.opt.cpoptions:append('I')
+vim.o.expandtab = true
+-- vim.o.smartindent = true
+-- vim.o.autoindent = true
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
 
---- Settings
-vim.opt.spelllang:append("cjk") -- Disable spellchecking for asian characters (VIM algorithm does not support it)
-vim.opt.shortmess:append("c")   -- Don't show redundant messages from ins-completion-menu
-vim.opt.whichwrap:append("<,>,[,],h,l")
+-- stops line wrapping from being confusing
+vim.o.breakindent = true
 
--- Disable some default providers
-for _, provider in ipairs({ "node", "perl", "python3", "ruby" }) do
-  vim.g["loaded_" .. provider .. "_provider"] = 0
-end
+-- Save undo history
+vim.o.undofile = true
 
--- Latex
-vim.g.tex_flavor = "latex"
+-- Case-insensitive searching UNLESS \C or capital in search
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
--- Better netrw
+-- Keep signcolumn on by default
+vim.wo.signcolumn = 'yes'
+vim.wo.relativenumber = true
+
+-- Decrease update time
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menu,preview,noselect'
+
+-- NOTE: You should make sure your terminal supports this
+vim.o.termguicolors = true
+
+-- kickstart.nvim starts you with this.
+-- But it constantly clobbers your system clipboard whenever you delete anything.
+-- It syncs clipboard between OS and Neovim.
+--  See `:help 'clipboard'`
+-- vim.o.clipboard = 'unnamedplus'
+
+vim.g.netrw_liststyle = 0
 vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3
-vim.g.netrw_browse_split = 4
-vim.g.netrw_altv = 1
-vim.g.netrw_winsize = -28

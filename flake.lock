@@ -1,0 +1,43 @@
+{
+  "nodes": {
+    "mnw": {
+      "locked": {
+        "lastModified": 1790357809,
+        "narHash": "sha256-6IWPAMEotKY/nQvs1kU6qwMwCXTeW5HlOhw2RwFHFdI=",
+        "owner": "gerg-l",
+        "repo": "mnw",
+        "rev": "a582dbedf7c8ec7effa6939ac5bdd23b27267d1b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gerg-l",
+        "repo": "mnw",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1792488032,
+        "narHash": "sha256-RkAXQ3+a5rHMiP97Er7AawR1kvEXX9tK1mhiWedOPTc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e513db7b0a65def6f6e17bb55195dfe510871944",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "mnw": "mnw",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

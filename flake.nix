@@ -4,15 +4,21 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     mnw.url = "github:gerg-l/mnw";
   };
-  outputs = { self, nixpkgs, mnw, ... }@inputs:
+  outputs =
+    {
+      nixpkgs,
+      mnw,
+      self,
+      ...
+    }@inputs:
     let
       eachSystem = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
     in
     {
       # define packages flake provides
       packages = eachSystem (
-        system: 
-        let 
+        system:
+        let
           pkgs = import nixpkgs {
             inherit system;
             config = {
@@ -20,12 +26,20 @@
               allowUnfree = true;
             };
           };
-        in 
+
+          # point to mnw config in a separate file
+          config = import ./config.nix {
+            inherit pkgs inputs;
+            lib = pkgs.lib;
+          };
+        in
         {
-          default = self.packages.${system}.neovim;
+          # `default' so just `nix run' runs
+          default = self.packages.${system}.my-neovim;
+          # `dev` is for the development config
           dev = self.packages.${system}.default.devMode;
 
-          neovim = mnw.lib.wrap { inherit pkgs inputs; } ./config.nix;
+          my-neovim = mnw.lib.wrap pkgs config;
         }
       );
     };

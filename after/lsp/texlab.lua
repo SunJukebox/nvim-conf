@@ -142,7 +142,19 @@ return {
 	settings = {
 		texlab = {
 			build = {
-				args = { "-interaction=nonstopmode", "-synctex=1", "%f" },
+				args = {
+					"-X",
+					"compile",
+					"%f",
+					"-Z",
+					"search-path=$HOME/texmf/tex/latex/",
+					"-Z",
+					"search-path=$HOME/texmf/bibtex/bst/",
+					"--synctex",
+					"--keep-logs",
+					"--keep-intermediates",
+				},
+				executable = "tectonic",
 				forwardSearchAfter = false,
 				onSave = true,
 			},
